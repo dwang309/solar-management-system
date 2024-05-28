@@ -1,0 +1,31 @@
+spring.application.name: meter-consumer
+spring.output.ansi.enabled: ALWAYS
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/davedev
+    username: dave
+    password: test123
+
+solarmeter:
+  message:
+    topic: tp-solarmeter
+    consumerGroup: solarmeter-CG
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    org.springframework.data: DEBUG
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%15.15t]){yellow} %clr(:){red} %clr(%m){faint}%n"
+
+
+
